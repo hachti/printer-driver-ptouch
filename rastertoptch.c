@@ -1357,6 +1357,19 @@ emit_raster_lines (job_options_t* job_options,
       right_padding_bits = 0;
     else
       right_padding_bits = (bytes_per_line * 8 - width) / 2 + right_spacing_px;
+
+    fprintf(stderr, "DEBUG: %s: left_spacing_px:%i\n", progname,
+            left_spacing_px);
+    fprintf(stderr, "DEBUG: %s: right_spacing_px:%i\n", progname,
+            right_spacing_px);
+    fprintf(stderr, "DEBUG: %s: right_padding_bits:%i\n", progname,
+            right_padding_bits);
+
+    right_padding_bits = 289 - width / 2;
+
+    fprintf(stderr, "DEBUG: %s: right_padding_bits:%i\n", progname,
+            right_padding_bits);
+
   } else
     right_padding_bits = right_spacing_px;
   int right_padding_bytes = right_padding_bits / 8;
