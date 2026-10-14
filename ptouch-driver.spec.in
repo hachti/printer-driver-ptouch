@@ -28,7 +28,7 @@ URL: http://ptouch-driver.sourceforge.net/
 Source0: %{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires: cups-devel
+BuildRequires: cups-devel libpng-devel
 Requires: cups
 
 %description
@@ -56,6 +56,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING NEWS README
 /usr/lib/cups/filter/rastertoptch
+/usr/lib/cups/filter/ptouch-raster-bridge
 
 
 %changelog

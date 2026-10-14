@@ -35,6 +35,40 @@ when the application already rotates its output, and avoid combining it
 with a separate CUPS landscape/orientation override. Other printer settings
 and QL printers are unchanged.
 
+Rendering controls
+------------------
+
+PT printers offer the following additional options:
+
+  DitherMode       Screen (default) or ErrorDiffusion
+  ScreenFrequency  Ghostscript default, or 20/30/45/60/75/85 lpi
+  ScreenAngle      Ghostscript default, or 0/15/30/45/60/75/90 degrees
+  MinFeatureSize   1 (default) or 2; error diffusion only
+  ToneGamma        0.70/0.85/1.0/1.2/1.4/1.8/2.2
+  ToneBrightness   -20/-10/0/+10/+20/+30 percent
+  ToneContrast     50/75/100/125/150/200 percent
+
+Screen frequency and angle apply to Screen mode. Tone controls apply before
+rasterization, in the order gamma, contrast, brightness, then clipping.
+Gamma above 1 lightens midtones while preserving black and white; additive
+brightness can turn black text gray. Non-neutral tone settings replace
+PostScript document transfer functions, including per-page resets. Neutral
+settings preserve the document's transfer functions.
+
+Foomatic invokes Ghostscript with cups output in Screen mode or pngmonod
+in ErrorDiffusion mode. The installed ptouch-raster-bridge passes native
+CUPS raster unchanged, or converts consecutive 1-bit monochrome PNG pages
+to CUPS raster. Ghostscript performs the dithering; rastertoptch continues
+to generate the Brother protocol. QL rendering is unchanged.
+
+Building requires the CUPS and libpng development files, a C compiler,
+make, Autoconf, Automake, Perl, and XML::LibXML. The filter programs install
+under ${libdir}/cups/filter and the prepared XML files under
+${datadir}/foomatic/db/source. Match those locations to the CUPS and
+Foomatic installation in use; their search paths do not change with this
+package's prefix. Foomatic generates PPDs from the installed XML database.
+Existing queues retain their copied PPDs until explicitly updated.
+
 Please note: This software is not in any way related to Brother
 Industries, Ltd., except that it is intended for use with their
 products.  Any comments to this software should NOT be directed to

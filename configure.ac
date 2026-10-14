@@ -26,9 +26,10 @@ AC_CHECK_LIB([cupsimage], [cupsRasterReadHeader])
 LIBCUPSIMAGE=$LIBS
 LIBS=$INITIAL_LIBS
 
-AC_CHECK_LIB([png], [png_write_row])
+AC_CHECK_LIB([png], [png_write_row], [],
+             [AC_MSG_ERROR([libpng development files are required])])
 LIBPNG=$LIBS
-LIBS=$INITIALL_LIBS
+LIBS=$INITIAL_LIBS
 
 AC_SUBST([LIBM])
 AC_SUBST([LIBCUPS])
@@ -37,6 +38,7 @@ AC_SUBST([LIBPNG])
 
 # Checks for header files.
 AC_CHECK_HEADERS([cups/cups.h cups/raster.h])
+AC_CHECK_HEADERS([png.h], [], [AC_MSG_ERROR([png.h is required])])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST

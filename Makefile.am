@@ -24,9 +24,11 @@ LIBCUPSIMAGE			= @LIBCUPSIMAGE@
 LIBPNG				= @LIBPNG@
 
 execfilterdir			= $(libdir)/cups/filter
-execfilter_PROGRAMS		= rastertoptch
+execfilter_PROGRAMS		= rastertoptch ptouch-raster-bridge
 rastertoptch_CPPFLAGS		= -D_GNU_SOURCE
 rastertoptch_LDADD		= $(LIBM) $(LIBCUPS) $(LIBCUPSIMAGE)
+
+ptouch_raster_bridge_LDADD	= $(LIBPNG) $(LIBCUPS) $(LIBM)
 
 noinst_PROGRAMS			= ptexplain
 ptexplain_LDADD			= $(LIBPNG)
@@ -69,7 +71,14 @@ PRINTERS			= printer/Brother-QL-500.xml \
 				  printer/Brother-PT-9500PC.xml \
 				  printer/Brother-PT-9600.xml \
 				  printer/Brother-PT-9700PC.xml
-OPTIONS				= opt/Brother-PT-RotatePage.xml \
+OPTIONS				= opt/Brother-PT-DitherMode.xml \
+				  opt/Brother-PT-ScreenFrequency.xml \
+				  opt/Brother-PT-ScreenAngle.xml \
+				  opt/Brother-PT-MinFeatureSize.xml \
+				  opt/Brother-PT-ToneGamma.xml \
+				  opt/Brother-PT-ToneBrightness.xml \
+				  opt/Brother-PT-ToneContrast.xml \
+				  opt/Brother-PT-RotatePage.xml \
 				  opt/Brother-PTQL-Align.xml \
 				  opt/Brother-PTQL-AutoCut.xml \
 				  opt/Brother-PTQL-ChainPrinting.xml \

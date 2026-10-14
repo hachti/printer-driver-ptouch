@@ -18,3 +18,5 @@
 /stamp-h1
 /ptouch-driver-*.tar.gz
 /generated
+/build/
+/ptouch-raster-bridge
