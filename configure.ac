@@ -10,6 +10,7 @@ AC_CONFIG_HEADERS([config.h])
 # Checks for programs.
 AC_PROG_CC
 AC_PROG_INSTALL
+AC_PATH_PROG([PYTHON3], [python3], [python3])
 
 # Checks for libraries.
 INITIAL_LIBS=$LIBS

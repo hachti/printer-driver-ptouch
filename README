@@ -78,6 +78,25 @@ Screen mode, no rotation, and neutral tone settings. Per-user printer
 options can override both queue defaults and settings remembered by GTK
 applications; remove redundant user overrides if dialog choices reset.
 
+Offline printing tests
+----------------------
+
+Run make check after building to exercise the filters without printing or
+changing the system database. These tests additionally require Python 3,
+Ghostscript, cupsfilter, cupstestppd, and foomatic-ppdfile (Debian/Devuan:
+python3, ghostscript, cups, cups-client, cups-filters, foomatic-db-engine).
+No additional Python packages are needed. Set FOOMATIC_PPDFILE in the
+environment to use a different foomatic-ppdfile executable.
+
+The tests generate their PPDs from a temporary database of the prepared
+build XML. They cover PPD syntax and defaults, malformed/multi-page input,
+tone controls, raster settings, page changes, rotation and pixel polarity.
+These checks do not replace physical printing on the supported models.
+To compare output against PPDs from an earlier source revision, run:
+
+  python3 ../tests/check-printing.py --builddir . \
+      --baseline-ppds /path/to/old/ppds --keep "$PWD/check-results"
+
 Please note: This software is not in any way related to Brother
 Industries, Ltd., except that it is intended for use with their
 products.  Any comments to this software should NOT be directed to

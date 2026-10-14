@@ -30,6 +30,10 @@ rastertoptch_LDADD		= $(LIBM) $(LIBCUPS) $(LIBCUPSIMAGE)
 
 ptouch_raster_bridge_LDADD	= $(LIBPNG) $(LIBCUPS) $(LIBM)
 
+check_PROGRAMS			= raster-info
+raster_info_SOURCES		= tests/raster-info.c
+raster_info_LDADD		= $(LIBCUPS)
+
 noinst_PROGRAMS			= ptexplain
 ptexplain_LDADD			= $(LIBPNG)
 
@@ -120,7 +124,7 @@ options_DATA			= $(addprefix generated/,$(OPTIONS))
 EXTRA_DIST			= Doxyfile $(PACKAGE).spec.in \
 				  $(PACKAGE)-foomatic.spec.in \
 				  $(DRIVERS) $(PRINTERS) $(OPTIONS) \
-				  foomaticalize
+				  foomaticalize tests/check-printing.py
 
 RPMBUILD			= rpmbuild -ba
 RPMSOURCESDIR			= $(HOME)/src/SOURCES
@@ -172,3 +176,10 @@ xmlschema-option: $(OPTIONS)
 xmlschema: xmlschema-driver xmlschema-printer xmlschema-option
 xmllint:
 	@xmllint --noout $(DRIVERS) $(PRINTERS) $(OPTIONS)
+
+.PHONY: check-printing
+check-printing: all raster-info
+	$(PYTHON3) $(srcdir)/tests/check-printing.py \
+		--builddir "$(abs_builddir)"
+
+check-local: check-printing
