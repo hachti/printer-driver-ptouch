@@ -69,6 +69,15 @@ Foomatic installation in use; their search paths do not change with this
 package's prefix. Foomatic generates PPDs from the installed XML database.
 Existing queues retain their copied PPDs until explicitly updated.
 
+PT-P950NW defaults
+------------------
+
+The PT-P950NW defaults to MirrorPrint=False, RotatePage=CCW,
+DitherMode=ErrorDiffusion, and ToneGamma=G140. Other PT models retain
+Screen mode, no rotation, and neutral tone settings. Per-user printer
+options can override both queue defaults and settings remembered by GTK
+applications; remove redundant user overrides if dialog choices reset.
+
 Please note: This software is not in any way related to Brother
 Industries, Ltd., except that it is intended for use with their
 products.  Any comments to this software should NOT be directed to

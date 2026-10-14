@@ -87,5 +87,17 @@ USA
       <enum_val id="ev/hs-24" />
     </option>
     <option id="opt/Brother-PT-HalfCut" />
+    <option id="opt/Brother-PTQL-MirrorPrint">
+      <arg_defval>0</arg_defval>
+    </option>
+    <option id="opt/Brother-PT-RotatePage">
+      <arg_defval>ev/CCW</arg_defval>
+    </option>
+    <option id="opt/Brother-PT-DitherMode">
+      <arg_defval>ev/ErrorDiffusion</arg_defval>
+    </option>
+    <option id="opt/Brother-PT-ToneGamma">
+      <arg_defval>ev/G140</arg_defval>
+    </option>
   </select>
 </printer>
